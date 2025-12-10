@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="creator" content="Lwandiso Nunu">
+    <meta name="publisher" content="Lwandiso Nunu">
+
+    <title>Contact Us — Mandela Dating</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="//unpkg.com/alpinejs"></script>
+</head>
+
+<body class="bg-black text-yellow-300">
+
+    <nav class="sm:sticky top-0 left-0 right-0 w-full bg-black text-yellow-300 shadow-md z-50" x-data="{ open: false }">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+
+                <div class="flex items-center gap-10">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <img src="images/logo.png" alt="Logo" class="h-16 w-auto">
+                    </a>
+
+                    <div class="hidden md:flex space-x-6">
+                        <a class="text-lg font-medium hover:text-white transition" href="about.html">About</a>
+                        <a class="text-lg font-medium hover:text-white transition" href="features.html">Features</a>
+                        <a class="text-lg font-medium hover:text-white transition" href="contact.html">Contact Us</a>
+                        <a href="https://forms.gle/BZERnTCiBC27PaxGA" target="_blank"
+                            class="bg-red-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-red-700 transition">
+                            Help Us Improve — Take the Survey
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex gap-4">
+                    <button
+                        class="bg-yellow-300 text-black px-4 py-2 rounded-xl font-semibold animate-pulse cursor-not-allowed">
+                        Coming Soon
+                    </button>
+                </div>
+
+                <div class="md:hidden">
+                    <button @click="open = ! open" class="text-yellow-300 focus:outline-none">
+                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                            <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div :class="{'block': open, 'hidden': ! open}"
+            class="hidden md:hidden bg-black text-yellow-300 px-6 py-5 border-t border-yellow-300">
+            <div class="flex flex-col space-y-4">
+                <a class="text-lg font-medium hover:text-white transition" href="about.html">About</a>
+                <a class="text-lg font-medium hover:text-white transition" href="features.html">Features</a>
+                <a class="text-lg font-medium hover:text-white transition" href="contact.html">Contact Us</a>
+                <a href="https://forms.gle/BZERnTCiBC27PaxGA" target="_blank"
+                    class="bg-red-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-red-700 transition">
+                    Help Us Improve — Take the Survey
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="max-w-4xl mx-auto px-6 py-20">
+
+        <h1 class="text-4xl font-bold text-center mb-10">Contact Us</h1>
+
+        <p class="text-center text-lg mb-10 text-yellow-200">
+            Have questions? Want to collaborate? Need support?<br>
+            Reach out using the form below — we’ll get back to you.
+        </p>
+
+        <form class="bg-gray-900 p-8 rounded-2xl shadow-lg">
+            <div class="mb-6">
+                <label class="block mb-2 font-semibold">Your Name</label>
+                <input type="text" class="w-full p-3 rounded-lg bg-black border border-yellow-300 text-white"
+                    placeholder="Enter your name">
+            </div>
+
+            <div class="mb-6">
+                <label class="block mb-2 font-semibold">Your Email</label>
+                <input type="email" class="w-full p-3 rounded-lg bg-black border border-yellow-300 text-white"
+                    placeholder="example@email.com">
+            </div>
+
+            <div class="mb-6">
+                <label class="block mb-2 font-semibold">Message</label>
+                <textarea class="w-full p-3 rounded-lg bg-black border border-yellow-300 text-white" rows="5"
+                    placeholder="Write your message..."></textarea>
+            </div>
+
+            <button type="button" disabled
+                class="w-full bg-yellow-300 text-black py-3 rounded-xl font-bold cursor-not-allowed animate-pulse">
+                Coming Soon
+            </button>
+        </form>
+    </section>
+
+
+
+    <footer class="bg-gray-900 py-6 text-center text-yellow-200">
+        <p>&copy; 2025 Mandela Dating — All Rights Reserved.</p>
+    </footer>
+
+</body>
+
+</html>
