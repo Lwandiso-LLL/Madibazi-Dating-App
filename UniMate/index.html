@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="creator" content="Lwandiso Nunu">
+    <meta name="publisher" content="Lwandiso Nunu">
+
+    <title>Madibaz Dating</title>
+
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+
+    <style>
+        .animate-blink {
+            animation: blink 1s step-start infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .animate-pulse-scale {
+            animation: pulse-scale 1.4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-scale {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        #main-content {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #progress-bar {
+            height: 8px;
+            width: 80%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 9999px;
+            overflow: hidden;
+            margin-top: 16px;
+        }
+
+        #progress-bar-inner {
+            height: 100%;
+            width: 0%;
+            background: #fbbf24;
+            transition: width 0.2s ease;
+        }
+    </style>
+</head>
+
+<body class="antialiased bg-yellow-300 text-black font-sans">
+
+    <div id="preloader"
+        class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black text-yellow-300 text-center">
+        <img src="images/logo.png" alt="Madibaz Logo" class="w-32 h-32 animate-pulse-scale mb-6">
+        <div class="text-3xl font-bold" id="loading-percentage">0%</div>
+        <div id="progress-bar">
+            <div id="progress-bar-inner"></div>
+        </div>
+    </div>
+
+    <div id="main-content" x-data="typingAnimation()" x-ref="main" x-init="init($el)"
+        class="relative min-h-screen flex flex-col" style="display:none;">
+
+        <nav class="sm:sticky top-0 left-0 right-0 w-full bg-black text-yellow-300 shadow-md z-50"
+            x-data="{ open: false }">
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16 items-center">
+
+                    <div class="flex items-center gap-10">
+                        <a href="index.html" class="flex items-center gap-2">
+                            <img src="images/logo.png" alt="Logo" class="h-16 w-auto">
+                        </a>
+
+                        <div class="hidden md:flex space-x-6">
+                            <a class="text-lg font-medium hover:text-white transition" href="about.html">About</a>
+                            <a class="text-lg font-medium hover:text-white transition" href="features.html">Features</a>
+                            <a class="text-lg font-medium hover:text-white transition" href="contact.html">Contact
+                                Us</a>
+                                <a class="text-red-600 animate-blink" href="https://forms.gle/BZERnTCiBC27PaxGA" target="_blank">Please Fill this Google Form For To Help Us</a>
+                        </div>
+                    </div>
+
+
+                    <div class="hidden md:flex flex-col items-center gap-1">
+                        <button
+                            class="bg-gray-600 text-black px-4 py-2 rounded-xl font-semibold cursor-not-allowed opacity-60"
+                            disabled>
+                            Login
+                        </button>
+
+                        <span class="text-red-600 text-sm font-bold animate-blink">
+                            COMING SOON
+                        </span>
+                    </div>
+
+
+                    <div class="md:hidden">
+                        <button @click="open = true" class="text-yellow-300 focus:outline-none">
+                            <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div x-show="open" @click="open = false" x-transition.opacity
+                class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden">
+            </div>
+
+            <div x-show="open" x-transition:enter="transform transition ease-in-out duration-300"
+                x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+                x-transition:leave="transform transition ease-in-out duration-300"
+                x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full"
+                class="fixed top-0 left-0 w-64 h-full bg-black text-yellow-300 shadow-xl p-6 z-50 md:hidden">
+
+                <div class="flex justify-end mb-6">
+                    <button @click="open = false" class="text-yellow-300">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <nav class="flex flex-col space-y-5 text-lg font-medium">
+                    <a href="about.html" class="hover:text-white transition" @click="open=false">About</a>
+                    <a href="features.html" class="hover:text-white transition" @click="open=false">Features</a>
+                    <a href="contact.html" class="hover:text-white transition" @click="open=false">Contact Us</a>
+                    <a class="text-red-600 px-6 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition animate-blink" href="https://forms.gle/BZERnTCiBC27PaxGA" target="_blank">Please fill out this Google Form to help us understand your needs.</a>
+                        <span class="block text-gray-500 text-sm">Login</span>
+                        <span class="text-red-600 text-sm font-bold animate-blink">COMING SOON</span>
+                    </div>
+                </nav>
+
+            </div>
+        </nav>
+
+
+
+        <div class="flex flex-col items-center justify-center flex-1 text-center px-6 py-12">
+            <h1 class="text-5xl font-bold mb-4">
+                <span x-text="headingText"></span><span x-show="showCursor" class="animate-blink">|</span>
+            </h1>
+            <p class="text-xl mt-2">
+                <span x-text="subText"></span><span x-show="showCursorSub" class="animate-blink">|</span>
+            </p>
+
+
+            <div class="text-red-600 font-bold text-xl mb-3 animate-blink">COMING SOON</div>
+
+            <div class="space-x-4 mt-2">
+                <button disabled
+                    class="bg-gray-700 text-gray-300 px-6 py-3 rounded-xl text-lg font-semibold opacity-50 cursor-not-allowed">
+                    Create An Account
+                </button>
+
+                <button disabled class="text-gray-500 underline opacity-50 cursor-not-allowed">
+                    Login
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-yellow-400 py-12 text-center">
+            <h2 class="text-3xl font-bold mb-6">How It Works</h2>
+            <div class="flex flex-col md:flex-row justify-center gap-8 text-left px-6">
+                <div class="bg-white rounded-xl shadow-md p-6 w-full md:w-1/3">
+                    <h3 class="text-xl font-bold mb-2">🎓 Verify Student Status</h3>
+                    <p>Use your Nelson Mandela University student email.
+                        If you are from another tertiary institution, upload your proof of registration and a certified
+                        copy of your ID.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 w-full md:w-1/3">
+                    <h3 class="text-xl font-bold mb-2">📝 Profile Review</h3>
+                    <p>Your profile gets reviewed and approved.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 w-full md:w-1/3">
+                    <h3 class="text-xl font-bold mb-2">❤️ Connect</h3>
+                    <p>Start chatting with verified fellow students across campus.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white py-12 text-center" x-data="{
+            current: 0,
+            items: [
+                { title: 'Super Safe!', text: 'I love that everyone is verified. No fake accounts!' },
+                { title: 'Fun to Use', text: 'The app is clean and easy to use. Met amazing people already.' },
+                { title: 'Best Campus App', text: 'Honestly the best idea for NMU students.' },
+                { title: 'Made Friends!', text: 'Didn’t expect it but I made 3 new friends thanks to this app.' },
+                { title: 'Love the UI', text: 'Sleek and modern. Better than most real dating apps.' },
+                { title: 'Matches Fast', text: 'I got matched 2 hours after joining. Crazy!' },
+                { title: 'Secure', text: 'Student verification gives me peace of mind.' },
+                { title: 'Convenient', text: 'Meeting new people on campus has never been easier.' },
+                { title: 'Affordable', text: 'R15 is nothing for what you get. 100% worth it.' },
+                { title: 'Highly Recommended', text: 'Every NMU student needs to use this app.' },
+            ]
+        }">
+
+            <h2 class="text-3xl font-bold mb-8">What Students Are Saying</h2>
+
+            <div class="relative max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <template x-for="(testimonial, index) in items.slice(current, current + 2)" :key="index">
+                    <div class="bg-yellow-100 p-6 rounded-xl shadow-md transition-all duration-500" x-transition>
+                        <h3 x-text="testimonial.title" class="text-xl font-bold mb-2"></h3>
+                        <p class="text-gray-800 mb-4" x-text="`“${testimonial.text}”`"></p>
+                        <p class="text-sm text-gray-600">— NMU Student</p>
+                    </div>
+                </template>
+
+            </div>
+
+            <div class="flex justify-center mt-6 space-x-4">
+                <button @click="current = current <= 0 ? 8 : current - 2"
+                    class="px-4 py-2 bg-black text-yellow-300 rounded-full hover:bg-gray-800 transition">
+                    Prev
+                </button>
+
+                <button @click="current = current >= 8 ? 0 : current + 2"
+                    class="px-4 py-2 bg-black text-yellow-300 rounded-full hover:bg-gray-800 transition">
+                    Next
+                </button>
+            </div>
+        </div>
+
+        <footer class="bg-black text-yellow-300 py-6 text-center text-sm">
+            <div class="flex justify-center space-x-4">
+                <a href="#" class="hover:underline">Terms</a>
+                <a href="#" class="hover:underline">Privacy Policy</a>
+                <a href="#" class="hover:underline">Contact Support</a>
+                <a class="text-red-600 animate-blink" href="https://forms.gle/BZERnTCiBC27PaxGA" target="_blank">Please Fill this Google Form For To Help Us</a>
+            </div>
+            <p class="mt-4">&copy; 2025 Madibaz-Dating. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function typingAnimation() {
+            let typingSound = new Audio("sounds/type.mp3");
+            typingSound.volume = 0.2;
+
+            return {
+                headingFull: 'Find Your Campus Match Today!',
+                headingText: '',
+                subFull: 'It’s beautiful how a good conversation or a small act of kindness can brighten a whole day.',
+                subText: '',
+                showCursor: true,
+                showCursorSub: false,
+
+                init(el) { el.__startTyping = this.startTyping.bind(this); },
+
+                async startTyping() {
+                    for (let i = 0; i < this.headingFull.length; i++) {
+                        this.headingText += this.headingFull[i];
+                        typingSound.currentTime = 0;
+                        typingSound.play();
+                        await new Promise(r => setTimeout(r, 70));
+                    }
+                    this.showCursor = false;
+                    this.showCursorSub = true;
+
+                    await new Promise(r => setTimeout(r, 300));
+                    for (let i = 0; i < this.subFull.length; i++) {
+                        this.subText += this.subFull[i];
+                        typingSound.currentTime = 0;
+                        typingSound.play();
+                        await new Promise(r => setTimeout(r, 35));
+                    }
+                    this.showCursorSub = false;
+                }
+            }
+        }
+    </script>
+
+    <script>
+        let percent = 0;
+        const loadingText = document.getElementById('loading-percentage');
+        const progressBarInner = document.getElementById('progress-bar-inner');
+
+        const progressInterval = setInterval(() => {
+            percent++;
+            loadingText.textContent = percent + '%';
+            progressBarInner.style.width = percent + '%';
+
+            if (percent >= 100) {
+                clearInterval(progressInterval);
+                const preloader = document.getElementById('preloader');
+                const mainContent = document.getElementById('main-content');
+                preloader.classList.add('opacity-0');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    mainContent.classList.add('fade-in');
+                    if (mainContent.__startTyping) mainContent.__startTyping();
+                }, 700);
+            }
+        }, 40);
+    </script>
+
+</body>
+
+</html>
