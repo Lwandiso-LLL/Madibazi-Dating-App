@@ -14,7 +14,7 @@
 
 <body class="bg-black text-yellow-300">
 
-    <!-- NAVBAR -->
+   
     <nav class="sm:sticky top-0 left-0 right-0 w-full bg-black text-yellow-300 shadow-md z-50" x-data="{ open: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
@@ -66,7 +66,7 @@
         </div>
     </nav>
 
-    <!-- FORM SECTION -->
+   
     <section class="max-w-4xl mx-auto px-6 py-20">
 
         <h1 class="text-4xl font-bold text-center mb-10">Give Us Your Input</h1>
@@ -78,7 +78,7 @@
 
         <form id="feedbackForm" class="bg-gray-900 p-8 rounded-2xl shadow-lg space-y-6">
 
-            <!-- NAME -->
+            
             <div>
                 <label class="block mb-2 font-semibold">Your Name *</label>
                 <input required type="text" name="name"
@@ -86,7 +86,6 @@
                     placeholder="Enter your name">
             </div>
 
-            <!-- EMAIL -->
             <div>
                 <label class="block mb-2 font-semibold">Your Email *</label>
                 <input required type="email" name="email"
@@ -94,7 +93,7 @@
                     placeholder="example@email.com">
             </div>
 
-            <!-- AGE RANGE -->
+           
             <div>
                 <label class="block mb-2 font-semibold">Age Range *</label>
                 <select required name="age"
@@ -107,7 +106,7 @@
                 </select>
             </div>
 
-            <!-- FACULTY -->
+           
             <div>
                 <label class="block mb-2 font-semibold">Faculty / Programme *</label>
                 <input required type="text" name="faculty"
@@ -115,7 +114,7 @@
                     placeholder="E.g., BCom Accounting, Engineering, Health Sciences">
             </div>
 
-            <!-- WHAT THEY ARE LOOKING FOR -->
+            
             <div x-data="{ goal: '' }">
                 <label class="block mb-2 font-semibold">What are you looking for? *</label>
 
@@ -130,7 +129,7 @@
                     <option value="Other">Other</option>
                 </select>
 
-                <!-- OTHER OPTION FIELD (HIDDEN BY DEFAULT) -->
+              
                 <div x-show="goal === 'Other'" x-transition>
                     <input type="text" name="otherGoal"
                         class="mt-3 w-full p-3 rounded-lg bg-black border border-yellow-300 text-white"
@@ -138,7 +137,7 @@
                 </div>
             </div>
 
-            <!-- SUBSCRIPTION QUESTION -->
+          
             <div>
                 <label class="block mb-2 font-semibold">Would you be willing to spend R15 per month as a subscription? *</label>
                 <select required name="subscription"
@@ -151,7 +150,7 @@
                 </select>
             </div>
 
-            <!-- FEATURES -->
+           
             <div>
                 <label class="block mb-2 font-semibold">What features would you like to see? *</label>
                 <textarea required name="features" rows="4"
@@ -159,7 +158,7 @@
                     placeholder="Tell us your ideas..."></textarea>
             </div>
 
-            <!-- SAFETY CONCERNS -->
+          
             <div>
                 <label class="block mb-2 font-semibold">What online safety concerns do you have?</label>
                 <textarea name="safety" rows="4"
@@ -167,12 +166,11 @@
                     placeholder="Optional, but very helpful..."></textarea>
             </div>
 
-            <!-- NOTE -->
+          
             <p class="text-yellow-300 text-sm text-center opacity-80">
                 *This is my personal WhatsApp number and Facebook account, used temporarily to collect data for research and development.*
             </p>
 
-            <!-- BUTTONS -->
             <div class="flex flex-col md:flex-row gap-4 mt-6">
                 <button type="button" id="whatsappBtn"
                     class="w-full bg-green-500 text-black py-3 rounded-xl font-bold hover:bg-green-600 transition">
@@ -192,7 +190,7 @@
         <p>&copy; 2025 Madibaz Dating — All Rights Reserved.</p>
     </footer>
 
-    <!-- SCRIPT FOR FORM + MESSAGE FORMAT -->
+    
     <script>
         const whatsappNumber = "0719358875";
         const facebookProfile = "https://www.facebook.com/lwandiso.nunu.52";
@@ -201,7 +199,7 @@
             const form = document.getElementById("feedbackForm");
             const data = new FormData(form);
 
-            // Validate "Other" input
+          
             if (data.get("goal") === "Other") {
                 if (!data.get("otherGoal")?.trim()) {
                     alert("Please specify what you are looking for.");
