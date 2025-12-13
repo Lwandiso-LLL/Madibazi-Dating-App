@@ -14,7 +14,7 @@
 
 <body class="bg-black text-yellow-300">
 
-   
+    <!-- NAVBAR -->
     <nav class="sm:sticky top-0 left-0 right-0 w-full bg-black text-yellow-300 shadow-md z-50" x-data="{ open: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
@@ -28,6 +28,7 @@
                         <a class="text-lg font-medium hover:text-white transition" href="about.html">About</a>
                         <a class="text-lg font-medium hover:text-white transition" href="features.html">Features</a>
                         <a class="text-lg font-medium hover:text-white transition" href="contact.html">Contact Us</a>
+                         <a class="text-lg font-medium hover:text-white transition" href="privacy-policy.html">Privacy Policy</a>
                         <a href="https://forms.gle/BZERnTCiBC27PaxGA" target="_blank"
                             class="bg-red-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-red-700 transition">
                             Help Us Improve — Take the Survey
@@ -58,6 +59,7 @@
                 <a class="text-lg font-medium hover:text-white transition" href="about.html">About</a>
                 <a class="text-lg font-medium hover:text-white transition" href="features.html">Features</a>
                 <a class="text-lg font-medium hover:text-white transition" href="contact.html">Contact Us</a>
+                 <a class="text-lg font-medium hover:text-white transition" href="privacy-policy.html">Privacy Policy</a>
                 <a href="https://forms.gle/BZERnTCiBC27PaxGA" target="_blank"
                     class="bg-red-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-red-700 transition">
                     Help Us Improve — Take the Survey
@@ -66,7 +68,7 @@
         </div>
     </nav>
 
-   
+
     <section class="max-w-4xl mx-auto px-6 py-20">
 
         <h1 class="text-4xl font-bold text-center mb-10">Give Us Your Input</h1>
@@ -86,6 +88,7 @@
                     placeholder="Enter your name">
             </div>
 
+          
             <div>
                 <label class="block mb-2 font-semibold">Your Email *</label>
                 <input required type="email" name="email"
@@ -93,7 +96,7 @@
                     placeholder="example@email.com">
             </div>
 
-           
+            
             <div>
                 <label class="block mb-2 font-semibold">Age Range *</label>
                 <select required name="age"
@@ -106,7 +109,6 @@
                 </select>
             </div>
 
-           
             <div>
                 <label class="block mb-2 font-semibold">Faculty / Programme *</label>
                 <input required type="text" name="faculty"
@@ -114,7 +116,6 @@
                     placeholder="E.g., BCom Accounting, Engineering, Health Sciences">
             </div>
 
-            
             <div x-data="{ goal: '' }">
                 <label class="block mb-2 font-semibold">What are you looking for? *</label>
 
@@ -129,7 +130,6 @@
                     <option value="Other">Other</option>
                 </select>
 
-              
                 <div x-show="goal === 'Other'" x-transition>
                     <input type="text" name="otherGoal"
                         class="mt-3 w-full p-3 rounded-lg bg-black border border-yellow-300 text-white"
@@ -137,7 +137,6 @@
                 </div>
             </div>
 
-          
             <div>
                 <label class="block mb-2 font-semibold">Would you be willing to spend R15 per month as a subscription? *</label>
                 <select required name="subscription"
@@ -150,7 +149,7 @@
                 </select>
             </div>
 
-           
+            
             <div>
                 <label class="block mb-2 font-semibold">What features would you like to see? *</label>
                 <textarea required name="features" rows="4"
@@ -158,7 +157,6 @@
                     placeholder="Tell us your ideas..."></textarea>
             </div>
 
-          
             <div>
                 <label class="block mb-2 font-semibold">What online safety concerns do you have?</label>
                 <textarea name="safety" rows="4"
@@ -166,7 +164,6 @@
                     placeholder="Optional, but very helpful..."></textarea>
             </div>
 
-          
             <p class="text-yellow-300 text-sm text-center opacity-80">
                 *This is my personal WhatsApp number and Facebook account, used temporarily to collect data for research and development.*
             </p>
@@ -190,7 +187,6 @@
         <p>&copy; 2025 Madibaz Dating — All Rights Reserved.</p>
     </footer>
 
-    
     <script>
         const whatsappNumber = "0719358875";
         const facebookProfile = "https://www.facebook.com/lwandiso.nunu.52";
@@ -199,7 +195,7 @@
             const form = document.getElementById("feedbackForm");
             const data = new FormData(form);
 
-          
+    
             if (data.get("goal") === "Other") {
                 if (!data.get("otherGoal")?.trim()) {
                     alert("Please specify what you are looking for.");
